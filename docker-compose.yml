@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:14
+    container_name: options-postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=options_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mlflow:
+    build: ./mlflow_server
+    container_name: options-mlflow
+    ports:
+      - "5000:5000"
+    command: >
+      mlflow server 
+      --backend-store-uri postgresql://user:password@postgres/options_db 
+      --default-artifact-root /app/mlruns 
+      --host 0.0.0.0
+    volumes:
+      - ./mlruns:/app/mlruns
+    depends_on:
+      - postgres
+    environment:
+      - PYTHONIOENCODING=UTF-8
+
+volumes:
+  postgres_data:

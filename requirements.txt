@@ -1,0 +1,23 @@
+# Core Data Science & Numerics
+pandas
+numpy
+scikit-learn
+
+# Environment Variables
+python-dotenv
+
+# Machine Learning Models
+xgboost
+
+# Data Source
+polygon-api-client
+alpha_vantage
+
+# MLOps & Experiment Tracking
+mlflow
+
+# Optional: For custom Greek calculations
+# py_vollib
+
+# Optional: For Jupyter Notebooks
+# jupyter
